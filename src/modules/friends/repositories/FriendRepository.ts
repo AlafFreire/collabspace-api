@@ -35,7 +35,7 @@ class FriendRepository implements IFriendsRepositories {
     });
   }
 
-  listAllByUser(id: string): Promise<IListAllFriendsByUser[]> {
+  listAllFriendsByUser(id: string): Promise<IListAllFriendsByUser[]> {
     return prisma.friends.findMany({
       where: {
         OR: [

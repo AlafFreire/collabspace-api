@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { container } from "tsyringe";
 import { ListAllRequestsByUserUseCase } from "./listAllRequestsByUserUseCase";
 
-class ListAllRequestByUserController {
+class ListAllRequestsByUserController {
   async handle(request: Request, response: Response) {
     const { usrId } = request;
 
@@ -15,4 +15,4 @@ class ListAllRequestByUserController {
     return response.status(result.statusCode).json(result);
   }
 }
-export { ListAllRequestByUserController };
+export { ListAllRequestsByUserController };

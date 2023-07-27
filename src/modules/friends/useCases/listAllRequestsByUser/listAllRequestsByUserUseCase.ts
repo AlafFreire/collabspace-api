@@ -31,7 +31,7 @@ class ListAllRequestsByUserUseCase {
     });
 
     return new AppResponse({
-      message: "Amizades listadas com sucesso!",
+      message: "Solicitações listadas com sucesso!",
       data: {
         friends,
       },
