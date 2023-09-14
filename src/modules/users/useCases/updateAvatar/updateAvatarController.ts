@@ -1,6 +1,6 @@
-import { IRequestUpdateUserAvatar } from "@modules/users/dtos/users";
 import { Request, Response } from "express";
 import { container } from "tsyringe";
+import { IRequestUpdateUserAvatar } from "@modules/users/dtos/users";
 import { UpdateAvatarUseCase } from "./updateAvatarUseCase";
 
 class UpdateAvatarController {
@@ -14,6 +14,7 @@ class UpdateAvatarController {
       usrId,
       avatarUrl,
     });
+
     return response.status(result.statusCode).json(result);
   }
 }

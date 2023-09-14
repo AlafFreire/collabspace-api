@@ -1,9 +1,9 @@
+import { inject, injectable } from "tsyringe";
 import { AppError } from "@helpers/errorsHandler";
 import { AppResponse } from "@helpers/responseParser";
 import { IFriendsRepositories } from "@modules/friends/iRepositories/IFriendsRepositories";
 import { IUuidProvider } from "@shared/container/providers/uuidProvider/IUuidProvider";
 import { EnumFriendActions } from "src/enums/friendActions";
-import { inject, injectable } from "tsyringe";
 
 interface IRequest {
   usrId: string;
@@ -46,13 +46,13 @@ class CancelRequestUseCase {
       listFriendById.action_id_2 === EnumFriendActions.refused
     ) {
       throw new AppError({
-        message: "Essa solicitação já foi aceita ou recusada",
+        message: "Essa solicitação já foi aceita ou recusada!",
       });
     }
 
     await this.friendRepository.updateActionStatus({
       id,
-      actionId1: 2,
+      actionId1: EnumFriendActions.canceled,
       actionId2: null,
     });
 

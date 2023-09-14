@@ -43,13 +43,13 @@ class RecuseRequestUseCase {
 
     if (listFriendById.action_id_2 === EnumFriendActions.refused) {
       throw new AppError({
-        message: "Essa solicitação já foi recusada!",
+        message: "Solicitação já recusada!",
       });
     }
 
     if (listFriendById.action_id_1 !== EnumFriendActions.requested) {
       throw new AppError({
-        message: "Essa solicitação está cancelada ou aceita!",
+        message: "Solicitação foi cancelada ou aceita!",
       });
     }
 

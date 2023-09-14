@@ -25,13 +25,11 @@ class ListAllFriendsByUserUseCase {
           name: friend.users_friends_user_id_1Tousers.name,
           avatarUrl: friend.users_friends_user_id_1Tousers.avatar_url,
         },
-
         user2: {
           id: friend.users_friends_user_id_2Tousers.id,
           name: friend.users_friends_user_id_2Tousers.name,
           avatarUrl: friend.users_friends_user_id_2Tousers.avatar_url,
         },
-
         createdAt: friend.created_at,
       };
     });

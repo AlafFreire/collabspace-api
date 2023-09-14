@@ -1,12 +1,15 @@
-import { AcceptRequestController } from "@modules/friends/useCases/acceptRequest/acceptRequestController";
-import { CancelRequestController } from "@modules/friends/useCases/cancelRequest/cancelRequestController";
+import { Router } from "express";
+
 import { CreateFriendController } from "@modules/friends/useCases/createFriend/createFriendController";
+
+import { authentication } from "src/middlewares/authentication";
+
+import { CancelRequestController } from "@modules/friends/useCases/cancelRequest/cancelRequestController";
+import { AcceptRequestController } from "@modules/friends/useCases/acceptRequest/acceptRequestController";
+import { RecuseRequestController } from "@modules/friends/useCases/recuseRequest/recuseRequestController";
 import { DeleteFriendController } from "@modules/friends/useCases/deleteFriend/deleteFriendController";
 import { ListAllFriendsByUserController } from "@modules/friends/useCases/listAllFriendsByUser/listAllFriendsByUserController";
-import { ListAllRequestsByUserController } from "@modules/friends/useCases/listAllRequestsByUser/listAllRequestsByUserController";
-import { RecuseRequestController } from "@modules/friends/useCases/recuseRequest/recuseRequestController";
-import { Router } from "express";
-import { authentication } from "src/middlewares/authentication";
+import { ListAllRequestsByUserController } from "@modules/friends/useCases/listAllRequestByUser/listAllRequestsByUserController";
 
 const friendRoutes = Router();
 

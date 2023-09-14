@@ -1,8 +1,8 @@
-import { AppError } from "@helpers/errorsHandler";
-import { AppResponse } from "@helpers/responseParser";
-import { IRequestUpdateUserAvatar } from "@modules/users/dtos/users";
-import { IUsersRepositories } from "@modules/users/iRepositories/IUsersRepositories";
 import { inject, injectable } from "tsyringe";
+import { IUsersRepositories } from "@modules/users/iRepositories/IUsersRepositories";
+import { IRequestUpdateUserAvatar } from "@modules/users/dtos/users";
+import { AppResponse } from "@helpers/responseParser";
+import { AppError } from "@helpers/errorsHandler";
 
 interface IRequest extends IRequestUpdateUserAvatar {
   usrId: string;
@@ -25,13 +25,14 @@ class UpdateAvatarUseCase {
         message: "URL inválida!",
       });
     }
+
     await this.userRepository.updateAvatar({
       id: usrId,
       avatarUrl,
     });
 
     return new AppResponse({
-      message: "Avatar atualziado com sucesso!",
+      message: "Avatar atualizado com sucesso!",
     });
   }
 }

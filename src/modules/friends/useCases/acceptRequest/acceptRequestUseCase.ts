@@ -43,13 +43,13 @@ class AcceptRequestUseCase {
 
     if (listFriendById.action_id_2 === EnumFriendActions.accepted) {
       throw new AppError({
-        message: "Essa solicitação já foi aceita!",
+        message: "Solicitação já aceita!",
       });
     }
 
     if (listFriendById.action_id_1 !== EnumFriendActions.requested) {
       throw new AppError({
-        message: "Essa solicitação foi cancelada ou recusada!",
+        message: "Solicitação foi cancelada ou recusada!",
       });
     }
 

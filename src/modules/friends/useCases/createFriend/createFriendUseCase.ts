@@ -31,8 +31,7 @@ class CreateFriendUseCase {
 
     if (usrId === targetId) {
       throw new AppError({
-        message:
-          "Não é possível enviar uma solicitação a você mesmo. Procure um psicólogo!",
+        message: "Não é possível enviar uma solicitação para você mesmo!",
       });
     }
 
@@ -44,14 +43,14 @@ class CreateFriendUseCase {
       });
     }
 
-    const listFrienshipAlreadyExists =
+    const listFriendshipAlreadyExists =
       await this.friendRepository.listAlreadyExists(usrId, targetId);
 
-    if (listFrienshipAlreadyExists) {
+    if (listFriendshipAlreadyExists) {
       if (
-        listFrienshipAlreadyExists.action_id_1 ===
+        listFriendshipAlreadyExists.action_id_1 ===
           EnumFriendActions.requested &&
-        !listFrienshipAlreadyExists.action_id_2
+        !listFriendshipAlreadyExists.action_id_2
       ) {
         throw new AppError({
           message: "Solicitação já enviada!",
@@ -59,24 +58,26 @@ class CreateFriendUseCase {
       }
 
       if (
-        listFrienshipAlreadyExists.action_id_1 === EnumFriendActions.canceled ||
-        listFrienshipAlreadyExists.action_id_2 === EnumFriendActions.refused
+        listFriendshipAlreadyExists.action_id_1 ===
+          EnumFriendActions.canceled ||
+        listFriendshipAlreadyExists.action_id_2 === EnumFriendActions.refused
       ) {
         await this.friendRepository.updateActionStatus({
-          id: listFrienshipAlreadyExists.id,
+          id: listFriendshipAlreadyExists.id,
           actionId1: EnumFriendActions.requested,
           actionId2: null,
         });
+
         return new AppResponse({
-          message: "Solicitação enviada",
+          message: "Solicitação enviada com sucesso!",
         });
       }
 
       if (
-        listFrienshipAlreadyExists.action_id_2 === EnumFriendActions.accepted
+        listFriendshipAlreadyExists.action_id_2 === EnumFriendActions.accepted
       ) {
         throw new AppError({
-          message: "Solicitação já aceita!",
+          message: "A solicitação já foi aceita!",
         });
       }
     }
@@ -86,13 +87,14 @@ class CreateFriendUseCase {
       userId1: usrId,
       userId2: targetId,
     });
+
     return new AppResponse({
       statusCode: 201,
-      message: "Solicitação enviada!",
+      message: "Solicitação enviada com sucesso!",
       data: {
         id: createFriend.id,
-        userId1: createFriend.user_id_1,
-        usrId2: createFriend.user_id_2,
+        userId1: createFriend.action_id_1,
+        userId2: createFriend.user_id_2,
         actionId1: createFriend.action_id_1,
         actionId2: createFriend.action_id_2,
         createdAt: createFriend.created_at,

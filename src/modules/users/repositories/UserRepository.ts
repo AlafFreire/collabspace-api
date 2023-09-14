@@ -57,7 +57,9 @@ class UserRepository implements IUsersRepositories {
   async updateAvatar({ id, avatarUrl }: IUpdateUserAvatar): Promise<void> {
     await prisma.users.update({
       where: { id },
-      data: { avatar_url: avatarUrl },
+      data: {
+        avatar_url: avatarUrl,
+      },
     });
   }
 

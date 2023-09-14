@@ -7,21 +7,22 @@ interface IFriend {
   created_at: Date;
 }
 
-interface User {
-  id: string;
-  name: string;
-  avatar_url: string | null;
-}
-
 interface ICreateFriend {
   id: string;
   userId1: string;
   userId2: string;
 }
+
 interface IUpdateActionStatus {
   id: string;
   actionId1?: number;
   actionId2?: number | null;
+}
+
+interface User {
+  id: string;
+  name: string;
+  avatar_url: string | null;
 }
 
 interface IListAllFriendsByUser {

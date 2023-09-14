@@ -58,6 +58,6 @@ export {
   IRequestCreateUser,
   IRequestUpdateUser,
   IUpdateUser,
-  IRequestUpdateUserAvatar,
   IUpdateUserAvatar,
+  IRequestUpdateUserAvatar,
 };

@@ -1,6 +1,6 @@
+import { inject, injectable } from "tsyringe";
 import { AppResponse } from "@helpers/responseParser";
 import { IFriendsRepositories } from "@modules/friends/iRepositories/IFriendsRepositories";
-import { inject, injectable } from "tsyringe";
 
 interface IRequest {
   usrId: string;
@@ -17,7 +17,7 @@ class ListAllRequestsByUserUseCase {
     const listAllRequestsByUser =
       await this.friendRepository.listAllRequestsByUser(usrId);
 
-    const friends = listAllRequestsByUser.map((friend) => {
+    const requests = listAllRequestsByUser.map((friend) => {
       return {
         id: friend.id,
         user1: {
@@ -25,7 +25,6 @@ class ListAllRequestsByUserUseCase {
           name: friend.users_friends_user_id_1Tousers.name,
           avatarUrl: friend.users_friends_user_id_1Tousers.avatar_url,
         },
-
         createdAt: friend.created_at,
       };
     });
@@ -33,7 +32,7 @@ class ListAllRequestsByUserUseCase {
     return new AppResponse({
       message: "Solicitações listadas com sucesso!",
       data: {
-        friends,
+        requests,
       },
     });
   }

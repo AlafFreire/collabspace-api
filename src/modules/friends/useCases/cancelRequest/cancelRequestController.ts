@@ -13,6 +13,7 @@ class CancelRequestController {
       usrId,
       id,
     });
+
     return response.status(result.statusCode).json(result);
   }
 }

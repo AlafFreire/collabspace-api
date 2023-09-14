@@ -47,22 +47,15 @@ class PostRepository implements IPostsRepositories {
         tags: true,
         visibility: true,
         published_at: true,
-        users: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
-            avatar_url: true,
-          },
-        },
       },
     });
   }
 
   listAll(page: number, limit: number): Promise<IListAllPosts[]> {
     return prisma.posts.findMany({
-      orderBy: { published_at: "desc" },
-
+      orderBy: {
+        published_at: "desc",
+      },
       skip: page * limit,
       take: limit,
       select: {
@@ -80,6 +73,9 @@ class PostRepository implements IPostsRepositories {
           },
         },
         comments: {
+          orderBy: {
+            commented_at: "desc",
+          },
           select: {
             id: true,
             content: true,

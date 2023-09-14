@@ -15,4 +15,5 @@ class ListAllRequestsByUserController {
     return response.status(result.statusCode).json(result);
   }
 }
+
 export { ListAllRequestsByUserController };

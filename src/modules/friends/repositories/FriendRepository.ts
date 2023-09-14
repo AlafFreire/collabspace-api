@@ -80,7 +80,6 @@ class FriendRepository implements IFriendsRepositories {
     return prisma.friends.findMany({
       where: {
         user_id_2: id,
-
         AND: [
           {
             action_id_1: EnumFriendActions.requested,
@@ -99,7 +98,6 @@ class FriendRepository implements IFriendsRepositories {
             avatar_url: true,
           },
         },
-
         created_at: true,
       },
     });
