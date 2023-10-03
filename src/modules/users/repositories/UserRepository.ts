@@ -4,6 +4,7 @@ import {
   ICreateUser,
   IUpdateUser,
   IUpdateUserAvatar,
+  IUpdateUserCover,
   IUser,
 } from "@modules/users/dtos/users";
 import { IUsersRepositories } from "@modules/users/iRepositories/IUsersRepositories";
@@ -16,7 +17,6 @@ class UserRepository implements IUsersRepositories {
     telephone,
     birthDate,
     password,
-    avatarUrl,
   }: ICreateUser): Promise<IUser> {
     return prisma.users.create({
       data: {
@@ -26,7 +26,6 @@ class UserRepository implements IUsersRepositories {
         telephone,
         birth_date: birthDate,
         password,
-        avatar_url: avatarUrl,
       },
     });
   }
@@ -43,13 +42,20 @@ class UserRepository implements IUsersRepositories {
     });
   }
 
-  async update({ id, name, telephone, birthDate }: IUpdateUser): Promise<void> {
+  async update({
+    id,
+    name,
+    telephone,
+    birthDate,
+    bio,
+  }: IUpdateUser): Promise<void> {
     await prisma.users.update({
       where: { id },
       data: {
         name,
         telephone,
         birth_date: birthDate,
+        bio,
       },
     });
   }
@@ -59,6 +65,15 @@ class UserRepository implements IUsersRepositories {
       where: { id },
       data: {
         avatar_url: avatarUrl,
+      },
+    });
+  }
+
+  async updateCover({ id, coverUrl }: IUpdateUserCover): Promise<void> {
+    await prisma.users.update({
+      where: { id },
+      data: {
+        cover_url: coverUrl,
       },
     });
   }

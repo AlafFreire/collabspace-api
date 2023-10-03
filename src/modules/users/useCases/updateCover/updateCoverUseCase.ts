@@ -1,24 +1,24 @@
 import { inject, injectable } from "tsyringe";
 import { IUsersRepositories } from "@modules/users/iRepositories/IUsersRepositories";
-import { IRequestUpdateUserAvatar } from "@modules/users/dtos/users";
+import { IRequestUpdateUserCover } from "@modules/users/dtos/users";
 import { AppResponse } from "@helpers/responseParser";
 import { AppError } from "@helpers/errorsHandler";
 
-interface IRequest extends IRequestUpdateUserAvatar {
+interface IRequest extends IRequestUpdateUserCover {
   usrId: string;
 }
 
 @injectable()
-class UpdateAvatarUseCase {
+class UpdateCoverUseCase {
   constructor(
     @inject("UserRepository")
     private userRepository: IUsersRepositories
   ) {}
 
-  async execute({ usrId, avatarUrl }: IRequest): Promise<AppResponse> {
-    if (avatarUrl)
+  async execute({ usrId, coverUrl }: IRequest): Promise<AppResponse> {
+    if (coverUrl)
       if (
-        !avatarUrl.match(
+        !coverUrl.match(
           /https?:\/\/(?:www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\/[^\s]*)?/gi
         )
       ) {
@@ -27,15 +27,15 @@ class UpdateAvatarUseCase {
         });
       }
 
-    await this.userRepository.updateAvatar({
+    await this.userRepository.updateCover({
       id: usrId,
-      avatarUrl,
+      coverUrl,
     });
 
     return new AppResponse({
-      message: "Avatar atualizado com sucesso!",
+      message: "Cover atualizado com sucesso!",
     });
   }
 }
 
-export { UpdateAvatarUseCase };
+export { UpdateCoverUseCase };
