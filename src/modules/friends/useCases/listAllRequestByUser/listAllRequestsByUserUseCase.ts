@@ -19,7 +19,9 @@ class ListAllRequestsByUserUseCase {
 
   async execute({ id }: IRequest): Promise<AppResponse> {
     if (!this.uuidProvider.validateUUID(id)) {
-      throw new AppError({ message: "ID inválido!" });
+      throw new AppError({
+        message: "ID inválido!",
+      });
     }
 
     const listAllRequestsByUser =
