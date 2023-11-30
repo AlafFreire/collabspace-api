@@ -6,8 +6,8 @@ import { IUuidProvider } from "@shared/container/providers/uuidProvider/IUuidPro
 import { inject, injectable } from "tsyringe";
 
 interface IRequest extends IRequestUpdateAddress {
-  id: string;
   usrId: string;
+  id: string;
 }
 
 @injectable()
@@ -20,17 +20,17 @@ class UpdateAddressUseCase {
   ) {}
 
   async execute({
-    id,
     usrId,
-    cep,
+    id,
     country,
+    cep,
     province,
     city,
     street,
   }: IRequest): Promise<AppResponse> {
     if (!this.uuidProvider.validateUUID(id)) {
       throw new AppError({
-        message: "ID inválido!",
+        message: "ID é inválido!",
       });
     }
 
@@ -38,7 +38,7 @@ class UpdateAddressUseCase {
 
     if (!listById) {
       throw new AppError({
-        message: "Address não encontrado!",
+        message: "Endereço não encontrado!",
       });
     }
 
@@ -51,8 +51,8 @@ class UpdateAddressUseCase {
 
     await this.addressRepository.update({
       id,
-      cep,
       country,
+      cep,
       province,
       city,
       street,
@@ -63,4 +63,5 @@ class UpdateAddressUseCase {
     });
   }
 }
+
 export { UpdateAddressUseCase };

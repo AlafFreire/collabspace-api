@@ -5,9 +5,9 @@ import { IAddressRepositories } from "../iRepositories/IAddressRepositories";
 class AddressRepository implements IAddressRepositories {
   create({
     id,
-    usrId,
-    cep,
+    userId,
     country,
+    cep,
     province,
     city,
     street,
@@ -15,9 +15,9 @@ class AddressRepository implements IAddressRepositories {
     return prisma.address.create({
       data: {
         id,
-        user_id: usrId,
-        cep,
+        user_id: userId,
         country,
+        cep,
         province,
         city,
         street,
@@ -25,8 +25,8 @@ class AddressRepository implements IAddressRepositories {
       select: {
         id: true,
         user_id: true,
-        cep: true,
         country: true,
+        cep: true,
         province: true,
         city: true,
         street: true,
@@ -40,8 +40,8 @@ class AddressRepository implements IAddressRepositories {
       select: {
         id: true,
         user_id: true,
-        cep: true,
         country: true,
+        cep: true,
         province: true,
         city: true,
         street: true,
@@ -51,8 +51,8 @@ class AddressRepository implements IAddressRepositories {
 
   async update({
     id,
-    cep,
     country,
+    cep,
     province,
     city,
     street,
@@ -60,8 +60,8 @@ class AddressRepository implements IAddressRepositories {
     await prisma.address.update({
       where: { id },
       data: {
-        cep,
         country,
+        cep,
         province,
         city,
         street,
