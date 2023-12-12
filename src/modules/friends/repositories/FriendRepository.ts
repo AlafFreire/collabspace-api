@@ -1,4 +1,5 @@
 import { prisma } from "@libs/prismaClient";
+import { EnumFriendActions } from "src/enums/friendActions";
 import {
   ICreateFriend,
   IFriend,
@@ -7,7 +8,6 @@ import {
   IUpdateActionStatus,
 } from "../dtos/friends";
 import { IFriendsRepositories } from "../iRepositories/IFriendsRepositories";
-import { EnumFriendActions } from "src/enums/friendActions";
 
 class FriendRepository implements IFriendsRepositories {
   create({ id, userId1, userId2 }: ICreateFriend): Promise<IFriend> {
@@ -61,6 +61,7 @@ class FriendRepository implements IFriendsRepositories {
           select: {
             id: true,
             name: true,
+            email: true,
             avatar_url: true,
           },
         },
@@ -68,6 +69,7 @@ class FriendRepository implements IFriendsRepositories {
           select: {
             id: true,
             name: true,
+            email: true,
             avatar_url: true,
           },
         },
@@ -95,6 +97,7 @@ class FriendRepository implements IFriendsRepositories {
           select: {
             id: true,
             name: true,
+            email: true,
             avatar_url: true,
           },
         },

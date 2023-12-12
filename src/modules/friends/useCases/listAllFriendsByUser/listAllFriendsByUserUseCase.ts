@@ -32,11 +32,13 @@ class ListAllFriendsByUserUseCase {
         user1: {
           id: friend.users_friends_user_id_1Tousers.id,
           name: friend.users_friends_user_id_1Tousers.name,
+          email: friend.users_friends_user_id_1Tousers.email,
           avatarUrl: friend.users_friends_user_id_1Tousers.avatar_url,
         },
         user2: {
           id: friend.users_friends_user_id_2Tousers.id,
           name: friend.users_friends_user_id_2Tousers.name,
+          email: friend.users_friends_user_id_2Tousers.email,
           avatarUrl: friend.users_friends_user_id_2Tousers.avatar_url,
         },
         createdAt: friend.created_at,

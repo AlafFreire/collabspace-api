@@ -6,7 +6,7 @@ import { authentication } from "src/middlewares/authentication";
 import { ListAllPostsController } from "@modules/posts/useCases/listAllPosts/listAllPostsController";
 import { UpdatePostController } from "@modules/posts/useCases/updatePost/updatePostController";
 import { DeletePostController } from "@modules/posts/useCases/deletePost/deletePostController";
-import { ListPostByUserController } from "@modules/posts/useCases/listPostByUser/listPostByUserController";
+import { ListPostByUserController } from "@modules/posts/useCases/listAllPostByUser/listAllPostByUserController";
 
 const postRoutes = Router();
 

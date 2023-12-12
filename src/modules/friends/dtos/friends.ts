@@ -22,6 +22,7 @@ interface IUpdateActionStatus {
 interface User {
   id: string;
   name: string;
+  email: string;
   avatar_url: string | null;
 }
 
@@ -39,9 +40,9 @@ interface IListAllRequestsByUser {
 }
 
 export {
-  IFriend,
   ICreateFriend,
-  IUpdateActionStatus,
+  IFriend,
   IListAllFriendsByUser,
   IListAllRequestsByUser,
+  IUpdateActionStatus,
 };
